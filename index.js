@@ -3,8 +3,8 @@ let gridContainer = document.querySelector('#grid-container');
 let button = document.querySelector('button');
 let indexCSS = document.styleSheets[0];
 
-function hover(target){
-    target.style.backgroundColor = 'grey';
+function hover(event){
+    event.target.style.backgroundColor = 'grey';
 }
 
 function buttomPrompt(){
@@ -23,7 +23,7 @@ function createGrid(gridSize){
     for (let i=0; i<gridSize*gridSize; i++){
         let grid = document.createElement('div');
         grid.classList.toggle('grid-square');
-        grid.addEventListener('mouseenter', (e) => hover(e.target));
+        grid.addEventListener('mouseenter', hover);
         gridContainer.appendChild(grid);
     }
 }
