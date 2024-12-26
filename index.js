@@ -4,7 +4,12 @@ let button = document.querySelector('button');
 let indexCSS = document.styleSheets[0];
 
 function hover(event){
-    event.target.style.backgroundColor = 'grey';
+    let grid = event.target
+    grid.style.backgroundColor = getRandomRGB();
+    let gridOpacity = parseFloat(grid.style.opacity);
+    if (gridOpacity < 1){
+        grid.style.opacity = gridOpacity + 0.1;
+    }
 }
 
 function buttomPrompt(){
@@ -17,6 +22,13 @@ function buttomPrompt(){
     createGrid(squarePerSide);
 }
 
+function getRandomRGB() {
+  const r = Math.floor(Math.random() * 256);
+  const g = Math.floor(Math.random() * 256);
+  const b = Math.floor(Math.random() * 256);
+  return `rgb(${r}, ${g}, ${b})`;
+}
+
 function createGrid(gridSize){
     gridContainer.replaceChildren(); // replace with nothing to remove
 
@@ -24,6 +36,7 @@ function createGrid(gridSize){
         let grid = document.createElement('div');
         grid.classList.toggle('grid-square');
         grid.addEventListener('mouseenter', hover);
+        grid.style.opacity = 0.1;
         gridContainer.appendChild(grid);
     }
 }
